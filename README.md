@@ -27,9 +27,16 @@ When we consider the first, middle, and last elements of the subarray, and then 
 
 Let's say our target is to pick a pivot that is greater than n/4 in the data set, and less than 3n/4 in the data set. If we were to randomly pick 1 element as out pivot, then the odds of it being in this target middle zone are 1/2. When we pick 3 elements, the odds of 1 of those elements being in the middle are 3 times as good. However, if both of the other elements selected are lower than the element in the target zone, then the median of the 3 elements may end up out of the target zone. And the same is true for the other way - if both of the other elements selected are higher than the element in the target zone, then the median of the 3 elements may end up out of the target zone as well.
 
-The probability for all 3 elements to be within the same non-target zone is 1/2 * 1/2 * 1/2 = 1/8. When we look at it this way, it seems way better than our probability for the first-element method, whose probability for picking outside the target zone is 1/2.
+The probability for all 3 elements to be within the same too-low zone is 1/4 * 1/4 * 1/4 = 1/64. This gives us a bad pivot.
+The probability of all 3 being in the too-high zone is 1/64 as well. This gives us a bad pivot.
+The probability of all 3 being in the good pivot zone is 1/2 * 1/2 * 1/2 = 1/8. This gives us a good pivot, and this probability is significantly greater than the 2 probabilities above.
+The probability of all 3 elements being in the 3 different zones is 1/4 * 1/2 * 1/4 = 1/32. In these cases, we have a target in the too-low zone, the good-pivot zone, and the too-high zone. In this case, even if our too-low zone value is all the way to the left, and the good-pivot zone is all the way to the left in that zone, and the too-high zone is also all the way to the left in that zone, then our median value is still in the good pivot zone. So this gives us a good pivot.
+The probability that 2 elements are in the good zone and 1 element is in a bad zone is 1/2 * 1/2 * 1/2 = 1/8. This should more often that not give us a good pivot.
+The probability that 2 elements are in the same bad zone and 1 element is in the good zone is 1/4 * 1/4 * 1/2 = 1/32. This will more often than not give us a bad pivot, but the odds of this happening are not super high.
 
-Obviously we know that, for a sorted or reverse-sorted data set, we are guaranteed O(nlog(n)) time. And as I said earlier, we know for certain that there will be at least one element on either side of the median value picked.
+Ultimately, we have good odds of getting 1 or multiple elements in the good zone, and within those cases, we have good odds that our median of three results in a good pivot.
+
+Obviously we also know that, for a sorted or reverse-sorted data set, we are guaranteed O(nlog(n)) time. And as I said earlier, we know for certain that there will be at least one element on either side of the median value picked.
 
 Choosing the median of three ultimately makes our pivot selection a little more calculated rather than completely random.
 
