@@ -20,3 +20,17 @@ quantitatively reason with them.
 Add your answer to this markdown file. [This
 page](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/writing-mathematical-expressions)
 might help with the notation for mathematical expressions.
+
+**MY ANSWER:**
+
+When we consider the first, middle, and last elements of the subarray, and then pick the median value, we know for certain that there will be at least one element on either side of the median value picked.
+
+Let's say our target is to pick a pivot that is greater than n/4 in the data set, and less than 3n/4 in the data set. If we were to randomly pick 1 element as out pivot, then the odds of it being in this target middle zone are 1/2. When we pick 3 elements, the odds of 1 of those elements being in the middle are 3 times as good. However, if both of the other elements selected are lower than the element in the target zone, then the median of the 3 elements may end up out of the target zone. And the same is true for the other way - if both of the other elements selected are higher than the element in the target zone, then the median of the 3 elements may end up out of the target zone as well.
+
+The probability for all 3 elements to be within the same non-target zone is 1/2 * 1/2 * 1/2 = 1/8. When we look at it this way, it seems way better than our probability for the first-element method, whose probability for picking outside the target zone is 1/2.
+
+Obviously we know that, for a sorted or reverse-sorted data set, we are guaranteed O(nlog(n)) time. And as I said earlier, we know for certain that there will be at least one element on either side of the median value picked.
+
+Choosing the median of three ultimately makes our pivot selection a little more calculated rather than completely random.
+
+For all these reasons, I would argue that the median of three method is more likely to pick a good pivot compared to simply choosing the first element.
