@@ -33,11 +33,10 @@ The probability of all 3 being in the good pivot zone is 1/2 * 1/2 * 1/2 = 1/8. 
 The probability of all 3 elements being in the 3 different zones is 1/4 * 1/2 * 1/4 = 1/32. In these cases, we have a target in the too-low zone, the good-pivot zone, and the too-high zone. In this case, even if our too-low zone value is all the way to the left, and the good-pivot zone is all the way to the left in that zone, and the too-high zone is also all the way to the left in that zone, then our median value is still in the good pivot zone. So this gives us a good pivot.
 The probability that 2 elements are in the good zone and 1 element is in a bad zone is 1/2 * 1/2 * 1/2 = 1/8. This should more often that not give us a good pivot.
 The probability that 2 elements are in the same bad zone and 1 element is in the good zone is 1/4 * 1/4 * 1/2 = 1/32. This will more often than not give us a bad pivot, but the odds of this happening are not super high.
+The probability that 2 elements are in the same bad zone and 1 element is in the other bad zone is 1/4 * 1/4 * 1/4 = 1/64. This should more often that not give us a good pivot.
 
-Ultimately, we have good odds of getting 1 or multiple elements in the good zone, and within those cases, we have good odds that our median of three results in a good pivot.
+Ultimately, the odds that we get a split that's 3-to-1 or better using this median-of-three pivot selection method are 11/16, or about 69%. This is certainly better than our 50% probability of picking a good pivot when just choosing the first element.
 
 Obviously we also know that, for a sorted or reverse-sorted data set, we are guaranteed O(nlog(n)) time. And as I said earlier, we know for certain that there will be at least one element on either side of the median value picked.
-
-Choosing the median of three ultimately makes our pivot selection a little more calculated rather than completely random.
 
 For all these reasons, I would argue that the median of three method is more likely to pick a good pivot compared to simply choosing the first element.
